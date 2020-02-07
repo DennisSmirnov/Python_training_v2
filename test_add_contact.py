@@ -9,18 +9,21 @@ class test_add_contact(unittest.TestCase):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    def open_home_page(self, wd):
+    def open_home_page(self):
+        wd = self.wd
         wd.get("http://localhost/addressbook/")
 
-    def login(self, wd, username, password):
-        self.open_home_page(wd)
+    def login(self, username, password):
+        wd = self.wd
+        self.open_home_page()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
-    def create_new_contact(self, wd, contact):
+    def create_new_contact(self, contact):
+        wd = self.wd
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -65,24 +68,25 @@ class test_add_contact(unittest.TestCase):
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.notes)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
-        self.return_to_home_page(wd)
+        self.return_to_home_page()
 
-    def return_to_home_page(self, wd):
+    def return_to_home_page(self):
+        wd = self.wd
         wd.find_element_by_link_text("home page").click()
 
-    def logout(self, wd):
+    def logout(self):
+        wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
     def test_test_add_contact(self):
-        wd = self.wd
-        self.login(wd, "admin", "secret")
-        self.create_new_contact(wd, Contact (firstname = "Петр", middlename = "Петрович", lastname = "Петров", nickname = "петрич",
+        self.login(username="admin", password="secret")
+        self.create_new_contact(Contact (firstname = "Петр", middlename = "Петрович", lastname = "Петров", nickname = "петрич",
                                              title = "ПЕТООР", company = "Петровкакомпания", address = "ул. Петров", home = "84956521474",
                                              mobile = "+75641257896", work = "89541236545", fax = "78444111", email1 = "petrmail@emilo.com",
                                              email2 = "petr2@emilo.com", email3 = "petrmilo@emilo.ru", homepage = "www.petrpetr.ru", bday = "1",
                                              bmonth = "January", byear = "1990", aday = "2", amonth = "February", ayear = "2015", address2 = "Адрес 2",
                                              phone2 = "2", notes = "что то"))
-        self.logout(wd)
+        self.logout()
 
     def tearDown(self):
         self.wd.quit()
