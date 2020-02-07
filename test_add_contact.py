@@ -5,12 +5,12 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest
 
-class UntitledTestCase(unittest.TestCase):
+class test_add_contact(unittest.TestCase):
     def setUp(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
     
-    def test_untitled_test_case(self):
+    def test_test_add_contact(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/")
         wd.find_element_by_name("user").click()
