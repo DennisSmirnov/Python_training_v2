@@ -1,5 +1,5 @@
 from model.contact import Contact
-
+#
 def test_test_modify_first_contact(app):
     if app.contact.count() == 0:
         app.contact.create(Contact(firstname ="Петр", middlename ="Петрович", lastname ="Петров", nickname ="петрич",
