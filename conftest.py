@@ -8,7 +8,6 @@ def app(request):
     global fixture
     if fixture is None:
         fixture = Application()
-
     else:
         if not fixture.is_valid():
             fixture = Application()
