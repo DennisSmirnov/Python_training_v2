@@ -57,12 +57,14 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
+        self.app.open_home_page()
         self.select_first_contact()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
 
     def modify_first_contact(self, new_contact_data):
         wd = self.app.wd
+        self.app.open_home_page()
         self.select_first_contact()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
         self.fill_contact_form(new_contact_data)
