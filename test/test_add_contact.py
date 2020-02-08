@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 from model.contact import Contact
-#
+
 def test_test_add_contact(app):
     app.contact.create(Contact (firstname ="Петр", middlename ="Петрович", lastname ="Петров", nickname ="петрич",
                                 title = "ПЕТООР", company = "Петровкакомпания", address = "ул. Петров", home = "84956521474",
