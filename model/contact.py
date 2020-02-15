@@ -29,3 +29,8 @@ class Contact:
         self.notes = notes
         self.id = id
 
+    def __repr__(self):
+        return "%s:%s:%s:%s" % (self.lastname, self.firstname, self.address, self.id)
+
+    def __eq__(self, other):
+        return str(self.lastname == other.lastname and self.firstname == other.lastname and self.address == other.address and self.id == other.id)
