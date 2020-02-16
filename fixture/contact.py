@@ -95,7 +95,7 @@ class ContactHelper:
         return len(wd.find_elements_by_name("selected[]"))
 
     contact_cache = None
-
+#
     def get_contact_list(self):
         if self.contact_cache is None:
             wd = self.app.wd
