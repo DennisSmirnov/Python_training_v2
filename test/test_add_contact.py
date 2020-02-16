@@ -1,4 +1,5 @@
 from model.contact import Contact
+#
 
 def test_test_add_contact(app):
     old_contact = app.contact.get_contact_list()
