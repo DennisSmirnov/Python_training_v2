@@ -109,3 +109,4 @@ class ContactHelper:
                 self.contact_cache.append(Contact(firstname=firstname_text, lastname=lastname_text, id = id))
         return list(self.contact_cache)
 
+    #def get_contact_info_from_edit_page(self, index):
