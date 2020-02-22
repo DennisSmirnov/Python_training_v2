@@ -95,7 +95,7 @@ class ContactHelper:
         return len(wd.find_elements_by_name("selected[]"))
 
     contact_cache = None
-#
+
     def get_contact_list(self):
         if self.contact_cache is None:
             wd = self.app.wd
@@ -105,10 +105,13 @@ class ContactHelper:
                 cells = element.find_elements_by_tag_name("td")
                 lastname_text = cells[1].text
                 firstname_text = cells[2].text
+                address_text = cells[3].text
                 id = cells[0].find_element_by_name("selected[]").get_attribute("value")
+                all_emails = cells[4].text
                 all_phones = cells[5].text
                 self.contact_cache.append(Contact(firstname=firstname_text, lastname=lastname_text, id = id,
-                                                  all_phones_from_home_page = all_phones))
+                                                  all_phones_from_home_page = all_phones, all_emails_from_home_page = all_emails,
+                                                  address=address_text))
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self, index):
@@ -135,8 +138,13 @@ class ContactHelper:
         workphone = wd.find_element_by_name("work").get_attribute("value")
         mobilephone = wd.find_element_by_name("mobile").get_attribute("value")
         secondaryphone = wd.find_element_by_name("phone2").get_attribute("value")
+        address = wd.find_element_by_name("address").get_attribute("value")
+        email_1 = wd.find_element_by_name("email").get_attribute("value")
+        email_2 = wd.find_element_by_name("email2").get_attribute("value")
+        email_3 = wd.find_element_by_name("email3").get_attribute("value")
         return Contact(firstname=firstname, lastname=lastname, id=id, home=homephone, mobile=mobilephone,
-                       work=workphone, phone2=secondaryphone)
+                       work=workphone, phone2=secondaryphone, address=address, email1=email_1, email2=email_2,
+                       email3=email_3)
 
     def get_contact_from_viev_page(self, index):
         wd = self.app.wd
