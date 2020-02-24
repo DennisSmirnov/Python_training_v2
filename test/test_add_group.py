@@ -1,7 +1,7 @@
 from model.group import Group
 import pytest
 from data.groups import testdata
-
+#
 #@pytest.mark.parametrize("group", tessdata, ids=[repr(x) for x in tessdata])
 
 def test_add_group(app, json_groups):

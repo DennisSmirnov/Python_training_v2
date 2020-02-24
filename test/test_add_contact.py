@@ -4,21 +4,9 @@ import random
 import string
 
 
-def random_string(prefix, maxlen):
-    symbols = string.ascii_letters + string.digits + string.punctuation + " "*10
-    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
-
-testdata = [
-    Contact(firstname=firstname, middlename=middlename, lastname =lastname, address=address, email1=email1, company=company)
-    for firstname in ["", random_string ("firstname", 10)]
-    for middlename in ["", random_string("middlename", 20)]
-    for lastname in ["", random_string ("lastname", 20)]
-    for address in ["", random_string ("address", 20)]
-    for email1 in ["", random_string ("email1", 20)]
-    for company in ["", random_string ("cpmpany", 20)]
-]
-@pytest.mark.parametrize("contact", testdata, ids=[repr(x) for x in testdata])
-def test_test_add_contact(app, contact):
+#@pytest.mark.parametrize("contact", testdata, ids=[repr(x) for x in testdata])
+def test_test_add_contact(app, json_contacts):
+    contact = json_contacts
     old_contact = app.contact.get_contact_list()
     app.contact.create(contact)
     new_contact = app.contact.get_contact_list()
