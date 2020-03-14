@@ -176,7 +176,7 @@ class ContactHelper:
         wd = self.app.wd
         self.app.open_home_page()
         self.edit_contact_by_id(id)
-        self.fill_contact_form(new_contact_data)
+        self.fill_contact_form(id.new_contact_data)
         wd.find_element_by_name("update").click()
         self.return_to_home_page()
         self.contact_cache = None
